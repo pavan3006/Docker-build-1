@@ -2,8 +2,8 @@ name: AUTO DEPLOY CONTAINER
 
 env:
    DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-   USERNAME: yourhubusername
-   REPOSITORY_NAME: yourrepositoryname
+   USERNAME: Docker
+   REPOSITORY_NAME: Docker Repo
 
 on:
   push:
