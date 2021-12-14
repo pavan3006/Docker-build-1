@@ -35,7 +35,7 @@ jobs:
         uses: Azure/cli@v1
         with:
     # Specify the script here
-         inlineScript: az login --service-principal --Subscription ${{ secrets.AZURE_CREDENTIALS }} --tenant ${{ secrets.TENANT_ID }} --password certificate.pem
+         inlineScript: az login --service-principal --Subscription ${{ secrets.AZURE_CREDENTIALS }} --tenant ${{ secrets.ARM_TENANT_ID }} --password certificate.pem
     # Azure CLI version to be used to execute the script. If not provided, latest version is used
        # azcliversion: # optional, default is agentazcliversion
       - name: Install Docker
