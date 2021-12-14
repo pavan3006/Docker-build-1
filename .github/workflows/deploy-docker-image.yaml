@@ -1,21 +1,17 @@
 name: AUTO DEPLOY CONTAINER
 
-env:
- - name: Azure Login
-   uses: Azure/login@v1
-   with:
-    # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-    creds: ${{env.AZURE_CREDENTIALS}}
+  #env:
+ 
  
  
  
  
  #ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-  ARM_TENANT_ID:  ${{ secrets.TENANT_ID }}
+  #ARM_TENANT_ID:  ${{ secrets.TENANT_ID }}
   
  # DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
   #USERNAME: Docker
-  REPOSITORY_NAME: Docker Repo
+  #REPOSITORY_NAME: Docker Repo
 
 on:
   push:
@@ -26,8 +22,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+     
       - name: Checkout Repository
         uses: actions/checkout@v2
+      - name: Azure Login
+        uses: Azure/login@v1
+        with:
+    # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
+         creds: ${{env.AZURE_CREDENTIALS}}
       - name: Install Docker
         uses: docker/setup-buildx-action@v1
       - name: Login to Docker
