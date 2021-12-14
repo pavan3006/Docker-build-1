@@ -30,6 +30,14 @@ jobs:
         with:
     # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
          creds: ${{env.AZURE_CREDENTIALS}}
+         
+      - name: Azure CLI Action
+        uses: Azure/cli@v1
+        with:
+    # Specify the script here
+         inlineScript: az login --service-principal --Subscription ${{ secrets.AZURE_CREDENTIALS }} --tenant ${{ secrets.TENANT_ID }} --password certificate.pem
+    # Azure CLI version to be used to execute the script. If not provided, latest version is used
+       # azcliversion: # optional, default is agentazcliversion
       - name: Install Docker
         uses: docker/setup-buildx-action@v1
       - name: Login to Docker
