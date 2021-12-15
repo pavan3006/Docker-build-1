@@ -25,7 +25,7 @@ jobs:
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
             
         - name: 'Setup Kubectl'
-          uses: azure/Setup-login@v1
+          #uses: azure/Setup-login@v1
           
         - name: 'Kubernetes Set context'
           uses: azure/k8s-set-context@v2
