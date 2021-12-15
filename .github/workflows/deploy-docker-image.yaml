@@ -30,11 +30,11 @@ jobs:
         - name: 'Kubernetes Set context'
           uses: azure/k8s-set-context@v2
           with:
-            kubeconfig: ${{secrets.KUBE_CONFIG}}
-        - run: |
-            kubectl run sampleapp --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }} -o yaml --dry-run|kubectl -n blackbird-aks -f -
-            kubectl -n blackbird-aks expose deploy sampleapp --port 80 --type LoadBalancer -o yaml --dry-run json|kubectl -n blackbird-aks -f -
-          
-          
+             creds: '${{ secrets.AZURE_CREDENTIALS }}'
+             cluster-name: ${{ env.CLUSTER_NAME }}
+             resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+           # kubeconfig: ${{secrets.KUBE_CONFIG}}
+      #  - run: |
+        
 
 
