@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: demoapp
-        image: Blackbirddev/demoapp
+        image: blackbirddev/demoapp
       #  resources:
         #  limits:
           #  memory: "128Mi"
