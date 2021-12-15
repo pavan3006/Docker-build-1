@@ -23,4 +23,18 @@ jobs:
         - run: |
             docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
             docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+            
+        - name: 'Setup Kubectl'
+          uses: azure/Setup-login@v2
+          
+        - name: 'Kubernetes Set context'
+          uses: azure/k8s-set-context@v2
+          with:
+            kubeconfig: ${{secrets.KUBE_CONFIG}}
+        - run: |
+            kubectl run sampleapp --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }} -o yaml --dry-run|kubectl -n Naveen -f -
+            kubectl -n Naveen expose deploy sampleapp --port 80 --type LoadBalancer -o yaml --dry-run|kubectl -n Naveen -f -
+          
+          
+
 
