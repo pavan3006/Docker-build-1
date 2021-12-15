@@ -43,8 +43,8 @@ jobs:
             manifests/service.yaml
            images: |
              ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-           imagepullsecrets: |
-            ${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection
+          # imagepullsecrets: |
+            #${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection
            action: deploy
        
        
