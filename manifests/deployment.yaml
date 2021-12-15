@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demoapp
+  name: demoapp-deployment
 spec:
   selector:
     matchLabels:
       app: demoapp
-      replicas: 2
-  template:
+  replicas: 2
+  templates:
     metadata:
       labels:
         app: demoapp
     spec:
       containers:
       - name: demoapp
-        image: blackbirddev/demoapp
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: Blackbirddev/demoapp
+      #  resources:
+        #  limits:
+          #  memory: "128Mi"
+          #  cpu: "500m"
         ports:
         - containerPort: 80
