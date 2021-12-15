@@ -31,17 +31,17 @@ jobs:
           uses: azure/k8s-set-context@v2
           with:
            kubeconfig: ${{secrets.KUBE_CONFIG}}
-        #- run: |
-            #kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+        - run: |
+            #kubectl create namespace ${{ secrets.NAMESPACE }} --dry-run -o json | kubectl apply -f -
             
-        - name: 'Deploy app to AKS'
-          uses: azure/k8s-deploy@v1
-          with:
-           manifests: |
-            manifests/deployment.yml
-            manifests/service.yml
-           images: |
-            ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+       # - name: 'Deploy app to AKS'
+        #  uses: azure/k8s-deploy@v1
+        #  with:
+          # manifests: |
+           # manifests/deployment.yml
+           # manifests/service.yml
+          # images: |
+          #  ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
         #  imagepullsecrets: |
        #   ${{ env.SECRET }}
       #  namespace: ${{ env.NAMESPACE }}
