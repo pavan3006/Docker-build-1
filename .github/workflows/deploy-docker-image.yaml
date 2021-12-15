@@ -30,12 +30,9 @@ jobs:
         - name: 'Kubernetes Set context'
           uses: azure/k8s-set-context@v2
           with:
-             creds: '${{ secrets.AZURE_CREDENTIALS }}'
-             cluster-name: ${{ env.CLUSTER_NAME }}
-             resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
-          
-          # #kubeconfig: ${{secrets.KUBE_CONFIG}}
-      #  - run: |
-        
+           kubeconfig: ${{secrets.KUBE_CONFIG}}
+        - run: |
+            kubectl create namespace ${{ env.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+
 
 
