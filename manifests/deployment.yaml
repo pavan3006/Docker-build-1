@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sampleapp
+  name: demoapp
 spec:
   selector:
     matchLabels:
-      app: sampleapp
+      app: demoapp
   template:
     metadata:
       labels:
-        app: sampleapp
+        app: demoapp
     spec:
       containers:
-      - name: sampleapp
-        image: blackbirddev.azurecr.io/sampleapp
+      - name: demoapp
+        image: blackbirddev/demoapp
         resources:
           limits:
             memory: "128Mi"
