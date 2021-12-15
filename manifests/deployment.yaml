@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: sampleapp
-        image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+        image: HelloWorld/sampleapp
         resources:
           limits:
             memory: "128Mi"
