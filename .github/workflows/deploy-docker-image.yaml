@@ -38,8 +38,8 @@ jobs:
           uses: azure/k8s-deploy@v1
           with:
            manifests: |
-            manifests/deployment.yml
-            manifests/service.yml
+            manifests/deployment.yaml
+            manifests/service.yaml
            images: |
              ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
         #  imagepullsecrets: |
