@@ -32,8 +32,8 @@ jobs:
           with:
             kubeconfig: ${{secrets.KUBE_CONFIG}}
         - run: |
-            kubectl run sampleapp --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }} -o yaml --dry-run|kubectl -n Naveen -f -
-            kubectl -n Naveen expose deploy sampleapp --port 80 --type LoadBalancer -o yaml --dry-run|kubectl -n Naveen -f -
+            kubectl run sampleapp --image ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }} -o yaml --dry-run|kubectl -n blackbird-aks -f -
+            kubectl -n blackbird-aks expose deploy sampleapp --port 80 --type LoadBalancer -o yaml --dry-run|kubectl -n blackbird-aks -f -
           
           
 
