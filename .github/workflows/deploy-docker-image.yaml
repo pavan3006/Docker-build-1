@@ -41,8 +41,12 @@ jobs:
             manifests/deployment.yaml
             manifests/service.yaml
            images: |
-             ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-        #  imagepullsecrets: |
+             '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}'
+           imagepullsecrets: docker-image-pull-secret
+           action: deploy
+       
+       
+       #  imagepullsecrets: |
        #   ${{ env.SECRET }}
       #  namespace: ${{ env.NAMESPACE }}
 
