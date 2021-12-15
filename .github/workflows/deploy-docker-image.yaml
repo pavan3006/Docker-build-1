@@ -32,7 +32,7 @@ jobs:
           with:
            kubeconfig: ${{secrets.KUBE_CONFIG}}
         - run: |
-            kubectl create namespace ${{ secrets.NAMESPACE }} --Server-dry-run -o json | kubectl apply -n Balckbird-aks -f -
+            #kubectl create namespace ${{ secrets.NAMESPACE }} --Server-dry-run -o json | kubectl apply -n Balckbird-aks -f -
             kubectl -n Blackbird-aks expose deploy sampleapp --port 80 --type LoadBalancer -o yaml --Server-dry-run|kubectl apply -n Blackbird-aks -f -
             
         #- name: 'Deploy app to AKS'
