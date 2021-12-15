@@ -31,20 +31,21 @@ jobs:
           uses: azure/k8s-set-context@v2
           with:
            kubeconfig: ${{secrets.KUBE_CONFIG}}
-        #- run: |
-            #kubectl create namespace ${{ secrets.NAMESPACE }} --dry-run -o json | kubectl apply -f -
+        - run: |
+            kubectl create namespace ${{ secrets.NAMESPACE }} --dry-run -o json | kubectl apply -n Balckbird-aks -f -
+            kubectl -n Blackbird-aks expose deploy sampleapp --port 80 --type LoadBalancer -o yaml --dry-run|kubectl apply -n Blackbird-aks -f -
             
-        - name: 'Deploy app to AKS'
-          uses: azure/k8s-deploy@v1
-          with:
-           manifests: |
-            manifests/deployment.yaml
-            manifests/service.yaml
-           images: |
-             '${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}'
-           imagepullsecrets: |
-            ${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection
-           action: deploy
+        #- name: 'Deploy app to AKS'
+          #uses: azure/k8s-deploy@v1
+          #with:
+          # manifests: |
+           # manifests/deployment.yaml
+           # manifests/service.yaml
+         #  images: |
+             #'${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}'
+           #imagepullsecrets: |
+           # ${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection
+          # action: deploy
        
        
           #imagepullsecrets: |
