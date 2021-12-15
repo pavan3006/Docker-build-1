@@ -1,11 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sampleapp
-spec:
-  selector:
+  labels:
     app: sampleapp
-  type: LoadBalancer
+  name: sampleapp-nodeport-svc
+spec:
   ports:
   - port: 8080
+    protocol: TCP
     targetPort: 80
+    nodePort: 32000
+  selector:
+    app: sampleapp
+  type: NodePort
