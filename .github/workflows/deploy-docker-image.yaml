@@ -42,16 +42,16 @@ jobs:
            container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
            secret-name: ${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection   
      
-        #- name: 'Deploy app to AKS'
-         # uses: azure/k8s-deploy@v1
-         #with:
-          # manifests: |
-           # manifests/deployment.yaml
-            #manifests/service.yaml
-           #images: |
-            # ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
-           #magepullsecrets: |
-            #${{ secrets.REGISTRY_PASSWORD}}-registry-connection
+        - name: 'Deploy app to AKS'
+          uses: azure/k8s-deploy@v1
+          with:
+           manifests: |
+            manifests/deployment.yaml
+            manifests/service.yaml
+            images: |
+            ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+            magepullsecrets: |
+            #${{ secrets.REGISTRY_LOGIN_SERVER}}-registry-connection
            #action: deploy
        
        
