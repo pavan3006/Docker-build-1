@@ -27,13 +27,13 @@ jobs:
        # - name: 'Setup Kubectl"
           #uses: azure/Setup-login@v1
           
-        - name: 'Kubernetes Set context'
+        - name: 'aks Set context'
           uses: azure/aks-set-context@v1
           with:
              creds: ${{ secrets.AZURE_CREDENTIALS }}
              cluster-name: ${{ secrets.CLUSTER_NAME }}
              resource-group: ${{ secrets.RESOURCE_GROUP }}
-             kubeconfig: ${{secrets.KUBE_CONFIG}}
+             #kubeconfig: ${{secrets.KUBE_CONFIG}}
             
        
         - name: 'Helm tool installer'
