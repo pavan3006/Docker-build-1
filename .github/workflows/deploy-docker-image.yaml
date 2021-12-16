@@ -30,7 +30,7 @@ jobs:
         - name: 'Kubernetes Set context'
           uses: azure/k8s-set-context@v2
           with:
-            #kubeconfig: ${{secrets.KUBE_CONFIG}}
+            
              creds: ${{ secrets.AZURE_CREDENTIALS }}
              cluster-name: ${{ env.CLUSTER_NAME }}
              resource-group: ${{ env.RESOURCE_GROUP }}
