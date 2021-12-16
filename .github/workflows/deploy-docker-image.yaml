@@ -59,8 +59,8 @@ jobs:
           with:
            manifests: |
           
-              ./deploy/service.yaml
-              ./deploy/deployment.yaml
+              ./Deploy/service.yaml
+              ./Deploy/deployment.yaml
  #manifests: ${{ steps.bake.outputs.manifestsBundle }}
            images: |
             ${{ secrets.REGISTRY_LOGIN_SERVER }}.azurecr.io/aks-helloworld:${{ github.sha }}
