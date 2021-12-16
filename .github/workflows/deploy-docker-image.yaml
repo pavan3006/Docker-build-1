@@ -57,10 +57,11 @@ jobs:
         - name: 'Deploy app to AKS'
           uses: azure/k8s-deploy@v1
           with:
-           #manifests: |
-           manifests: ${{ steps.bake.outputs.manifestsBundle }}
-            #manifests/deployment.yaml
-            #manifests/service.yaml
+           manifests: |
+          
+              ./deploy/service.yaml
+              ./deploy/deployment.yaml
+ #manifests: ${{ steps.bake.outputs.manifestsBundle }}
            images: |
             ${{ secrets.REGISTRY_LOGIN_SERVER }}.azurecr.io/aks-helloworld:${{ github.sha }}
             imagepullsecrets: |
