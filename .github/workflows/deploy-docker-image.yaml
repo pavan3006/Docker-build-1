@@ -42,13 +42,11 @@ jobs:
            container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
            secret-name: ${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection   
            
-        - name:  Baking the helm chart to generate the manifests to deploy
-          uses: azure/k8s-bake@v1
+        - name:  Helm Install
+          uses: azure/setup-helm@v1
           with:
-           renderEngine: 'helm2'
-           helmChart: './my-helm-chart/' 
-           helm-version: 'latest' 
-           id: bake
+           version: '<version>' # default is latest stable
+          id: install
      
         #- name: 'Deploy app to AKS'
          # uses: azure/k8s-deploy@v1
