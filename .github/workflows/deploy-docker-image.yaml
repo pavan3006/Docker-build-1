@@ -51,7 +51,7 @@ jobs:
           uses: azure/k8s-bake@v1
           with:
            renderEngine: 'helm'
-           helmChart: './helm-chart/' 
+           helmChart: './my-helm-chart/' 
            helm-version: 'latest' 
            id: bake
      
