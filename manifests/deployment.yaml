@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demoapp-deployment
+  name: myapp-deployment
 spec:
   selector:
     matchLabels:
-      app: demoapp
+      app: myapp
   replicas: 2
   template:
     metadata:
       labels:
-        app: demoapp
+        app: myapp
     spec:
       containers:
-      - name: demoapp
+      - name: myapp
         image: blackbirddev/demoapp
       #  resources:
         #  limits:
