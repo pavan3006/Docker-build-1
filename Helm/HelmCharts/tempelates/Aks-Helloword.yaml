@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: acs-helloworld-{{.Release.Name}}
+  name: aks-helloworld-{{.Release.Name}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: acs-helloworld-{{.Release.Name}}
+      app: aks-helloworld-{{.Release.Name}}
   template:
     metadata:
       labels:
-        app: acs-helloworld-{{.Release.Name}}
+        app: aks-helloworld-{{.Release.Name}}
     spec:
       containers:
-      - name: acs-helloworld-{{.Release.Name}}
-        image: neilpeterson/aks-helloworld:v1
+      - name: aks-helloworld-{{.Release.Name}}
+        image: Blackbirddev/aks-helloworld:v1
         ports:
         - containerPort: 80
         env:
@@ -30,4 +30,4 @@ spec:
   ports:
   - port: 80
   selector:
-    app: acs-helloworld-{{.Release.Name}}
+    app: aks-helloworld-{{.Release.Name}}
