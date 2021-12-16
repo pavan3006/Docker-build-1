@@ -16,7 +16,7 @@ spec:
       - name: aks-helloworld-{{.Release.Name}}
         image: Blackbirddev/aks-helloworld:v1
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         env:
         - name: TITLE
           value: {{ .Values.title }}
