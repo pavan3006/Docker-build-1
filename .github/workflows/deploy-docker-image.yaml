@@ -41,18 +41,27 @@ jobs:
            container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
            container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
            secret-name: ${{ secrets.REGISTRY_LOGIN_SERVER }}-registry-connection   
-     
-        - name: 'Deploy app to AKS'
-          uses: azure/k8s-deploy@v1
+           
+        - name:  Baking the helm chart to generate the manifests to deploy
+          uses: azure/k8s-bake@v1
           with:
-           manifests: |
-            manifests/deployment.yaml
-            manifests/service.yaml
-            images: |
-            ${{ secrets.REGISTRY_LOGIN_SERVER }}.azurecr.io/myapp:${{ github.sha }}
-            imagepullsecrets: |
-            ${{ secrets.REGISTRY_LOGIN_SERVER}}-registry-connection
-           action: deploy
+           renderEngine: 'helm2'
+           helmChart: './my-helm-chart/' 
+           helm-version: 'latest' 
+           id: bake
+     
+        #- name: 'Deploy app to AKS'
+         # uses: azure/k8s-deploy@v1
+          #with:
+           #manifests: |
+            #manifests/deployment.yaml
+            #manifests/service.yaml
+            #images: |
+            #${{ secrets.REGISTRY_LOGIN_SERVER }}.azurecr.io/myapp:${{ github.sha }}
+            #imagepullsecrets: |
+            #${{ secrets.REGISTRY_LOGIN_SERVER}}-registry-connection
+           #action: deploy
+  
        
        
           #imagepullsecrets: |
