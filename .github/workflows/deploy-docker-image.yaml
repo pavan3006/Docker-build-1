@@ -47,24 +47,25 @@ jobs:
           with:
              version: v3.3.1
              
-        - name: Helm Bake
-          uses: azure/k8s-bake@v1
-          with:
-           renderEngine: kustomize
-           kustomizationPath: ./deploy/
-           id: bake
+        #- name: Helm Bake
+         # uses: azure/k8s-bake@v1
+         # with:
+          # renderEngine: kustomize
+          # kustomizationPath: ./deploy/
+          # id: bake
      
-        #- name: 'Deploy app to AKS'
-         # uses: azure/k8s-deploy@v1
-          #with:
+        - name: 'Deploy app to AKS'
+          uses: azure/k8s-deploy@v1
+          with:
            #manifests: |
+           manifests: ${{ steps.bake.outputs.manifestsBundle }}
             #manifests/deployment.yaml
             #manifests/service.yaml
-            #images: |
-            #${{ secrets.REGISTRY_LOGIN_SERVER }}.azurecr.io/myapp:${{ github.sha }}
-            #imagepullsecrets: |
-            #${{ secrets.REGISTRY_LOGIN_SERVER}}-registry-connection
-           #action: deploy
+           images: |
+            ${{ secrets.REGISTRY_LOGIN_SERVER }}.azurecr.io/myapp:${{ github.sha }}
+            imagepullsecrets: |
+            ${{ secrets.REGISTRY_LOGIN_SERVER}}-registry-connection
+            action: deploy
   
        
        
