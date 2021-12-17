@@ -59,7 +59,7 @@ jobs:
            kustomizationPath: ./Deploy/
            id: bake
      
-        - name: 'Deploy app to AKS'
+        #- name: 'Deploy app to AKS'
           #uses: azure/k8s-deploy@v1
           #with:
           # manifests: |
